@@ -1,0 +1,103 @@
+site_name: William Galleti - Dev
+
+theme:
+  language: pt-BR
+  name: material
+
+  features:
+    - navigation.instant
+    - navigation.instant.prefetch
+    - search.suggest
+    - search.highlight
+    - search.share
+    - header.autohide
+    - announce.dismiss
+    - navigation.footer
+
+  font:
+    text: Poppins
+    code: Ubuntu Mono
+
+  palette:
+    - scheme: default
+      primary: black
+      accent: deep orange
+      toggle:
+        icon: material/brightness-7
+        name: Switch to dark mode
+    - scheme: slate
+      primary: black
+      accent: deep orange
+      toggle:
+        icon: material/brightness-4
+        name: Switch to light mode
+
+plugins:
+  - offline
+  - search
+  # - social
+  - blog
+  - tags
+  - rss:
+      match_path: docs/blog/posts/.*
+      date_from_meta:
+        as_creation: date
+      categories:
+        - categories
+        - tags
+
+markdown_extensions:
+  - abbr
+  - admonition
+  - attr_list
+  - def_list
+  - footnotes
+  - md_in_html
+  - tables
+  - pymdownx.details
+  - pymdownx.caret
+  - pymdownx.mark
+  - pymdownx.tilde
+  - pymdownx.betterem
+  - pymdownx.arithmatex:
+      generic: true
+  - pymdownx.emoji:
+      emoji_index: !!python/name:material.extensions.emoji.twemoji
+      emoji_generator: !!python/name:material.extensions.emoji.to_svg
+  - pymdownx.highlight:
+      anchor_linenums: true
+      use_pygments: true
+      pygments_lang_class: true
+      auto_title: true
+      linenums: true
+      linenums_style: pymdownx-inline
+      line_spans: __span
+  - pymdownx.keys
+  - pymdownx.superfences
+  - pymdownx.smartsymbols
+  - pymdownx.snippets
+  - pymdownx.tasklist:
+      custom_checkbox: true
+      clickable_checkbox: true
+  - toc:
+      permalink: true
+
+extra:
+  social:
+    - icon: fontawesome/brands/github
+      link: https://github.com/wgalleti
+    - icon: fontawesome/brands/instagram
+      link: https://instagram.com/wgalleti
+    - icon: fontawesome/brands/youtube
+      link: https://www.youtube.com/channel/wGalleti
+    - icon: fontawesome/brands/whatsapp
+      link: https://whatsa.me/5565999448004
+  version:
+    provider: mike
+  consent:
+    title: Cookie consent
+    description: >-
+      Utilizamos cookies para reconhecer as suas repetidas visitas e preferências, bem como
+      para medir a eficácia da nossa documentação e se os usuários
+      encontre o que eles estão procurando. Com o seu consentimento, você está nos ajudando a
+      tornar nossa documentação melhor.
