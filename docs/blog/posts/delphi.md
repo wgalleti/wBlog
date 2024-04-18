@@ -14,11 +14,11 @@ Vou deixar registrado aqui algumas dicas importantes que mudaram minha forma de 
 * O Arrasta e solta é igual cartão de crédito, uma hora você vai pagar.
 * Retorne você mesmo
 * Planeje com interfaces
-* Limpe sua memória
-* Repetiu 3 vezes, padronize
-* Composição é muito legal
-* Pense simples (Simples não é fácil)
-* Separe responsabilidades
+* Limpe sua memória (Em breve)
+* Repetiu 3 vezes, padronize (Em breve)
+* Composição é muito legal (Em breve)
+* Pense simples (Simples não é fácil) (Em breve)
+* Separe responsabilidades (Em breve)
 
 ## O Arrasta e solta é igual cartão de crédito, uma hora você vai pagar
 
@@ -190,3 +190,73 @@ Pensando em interface, no caso do delphi já da pra entender o que vai precisar 
     function DocumentoGerado: TDocumentoGerado;
   end;
 ```
+
+Acumulando o que vimos anteriormente de encadeamento, junto com interfaces, podemos fazer o seguinte.
+
+
+```delphi
+  TEstoqueTransferencia = class(TInterfacedObject, iEstoqueTransferencia)
+  private
+    FDocumentoGerado: TDocumentoGerado; 
+  public
+    constructor Create;
+    destructor Destroy; override;
+    class function Iniciar: iEstoqueTransferencia;
+    
+    function Enviar(ATransferencia: Integer): iEstoqueTransferencia;
+    function Confirmar(ATransferencia: Integer): iEstoqueTransferencia;
+    function Estornar(ATransferencia: Integer): iEstoqueTransferencia;
+    function DocumentoGerado: TDocumentoGerado;
+  end;
+
+implementation
+
+constructor TEstoqueTransferencia.Create;
+begin
+
+end;
+
+destructor TEstoqueTransferencia.Destroy;
+begin
+  inherited;
+end;
+
+function TEstoqueTransferencia.Enviar(ATransferencia: Integer): iEstoqueTransferencia;
+begin
+  Result := Self;
+  // Logica aqui
+end;
+
+function TEstoqueTransferencia.Confirmar(ATransferencia: Integer): iEstoqueTransferencia;
+begin
+  Result := Self;
+  // Logica aqui
+end;
+
+function TEstoqueTransferencia.Estornar(ATransferencia: Integer): iEstoqueTransferencia;
+begin
+  Result := Self;
+  // Logica aqui
+end;
+
+function TEstoqueTransferencia.DocumentoGerado: TDocumentoGerado;
+begin
+  Result := FDocumentoGerado;
+end;
+```
+
+Agora o uso era só encadear tudo e ser feliz.
+
+```delphi
+  TEstoqueTransferencia
+    .Iniciar
+    .Enviar
+    .DocumentoGerado;
+
+  TEstoqueTransferencia
+    .Iniciar
+    .Confirmar
+    .DocumentoGerado;
+```
+
+O Melhor de tudo, que usando interface, você não precisa se preocupar com limpar a instancia da memória, pois logo após finalizar a utilização ele vai fazer isso de forma automática.
